@@ -9,6 +9,18 @@
 
 std::optional<std::string> LoadTextFile(const std::string& filename);
 
+#define CLASS_PTR(klassName) \
+class klassName; \
+using klassName ## UPtr = std::unique_ptr<klassName>; \
+using klassName ## Ptr = std::shared_ptr<klassName>; \
+using klassName ## WPtr = std::weak_ptr<klassName>;
+
+// 사용 예시
+// CLASS_PTR(Shader)을 선언하면 
+// using ShaderNameUPtr = std::unique_ptr<klassName>; 
+// using ShaderNamePtr = std::shared_ptr<klassName>; 
+// using ShaderNameWPtr = std::weak_ptr<klassName>;
+
 void OnFramebufferSizeChange(GLFWwindow* window, int width, int height) {
     SPDLOG_INFO("framebuffer size changed: ({} x {})", width, height);
     glViewport(0, 0, width, height);
