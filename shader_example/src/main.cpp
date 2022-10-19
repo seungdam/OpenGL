@@ -1,4 +1,5 @@
 #include "common.h"
+#include "shader.h"
 
 int main(int argc, char** argv) {
     SPDLOG_INFO("Start Program");
@@ -28,6 +29,11 @@ int main(int argc, char** argv) {
     }
     auto glVersion = glGetString(GL_VERSION);
     SPDLOG_INFO("OpenGL context version: {}", glVersion);
+    // shader loading 확인
+    auto vertexShader = Shader::CreateFromFile("./shader/vertex_shader.vs", GL_VERTEX_SHADER);
+    auto fragmentShader = Shader::CreateFromFile("./shader/simple.fs", GL_FRAGMENT_SHADER);
+    SPDLOG_INFO("vertex shader id: {}", vertexShader->Get());
+    SPDLOG_INFO("fragment shader id: {}", fragmentShader->Get());
     
     OnFramebufferSizeChange(window,WINDOW_WIDTH,WINDOW_HEIGHT);
     glfwSetFramebufferSizeCallback(window, OnFramebufferSizeChange);
