@@ -1,6 +1,6 @@
 #include "shader.h"
 
-Shader::CreateFromFile(const std::string& filename,GLenum shaderType) {
+ShaderUPtr Shader::CreateFromFile(const std::string& filename,GLenum shaderType) {
     auto shader = ShaderUPtr{new Shader()}; // shader 클래스 안 이기 때문에 여기서는 생성 가능.
     if(!shader->LoadFile(filename,shaderType)) return nullptr; // 파일 로드 실패시 null 반환
     return std::move(shader); // 생성 성공시 쉐이더의 주도권을 외부로 옮긴다.
@@ -30,4 +30,8 @@ bool Shader::LoadFile(const std::string& filename, GLenum shaderType) {
         return false;
     }
     return true;
+}
+
+Shader::~Shader() {
+    if(m_shader) glDeleteShader(m_shader);
 }
