@@ -13,6 +13,7 @@ src/main.cpp
 src/common.h
 src/shader.h
 src/program.h
+src/context.h
 )
 include(Dependency.cmake)
 
