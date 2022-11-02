@@ -1,16 +1,15 @@
 #pragma once
 #include "common.h"
+#include "shader.h"
 #include "program.h"
 
-CLASS_PTR(CONTEXT)
-class CONTEXT {
+CLASS_PTR(Context);
+class Context {
 public:
-    static CONTEXTUPtr Create();
+    static ContextUPtr Create();
     void Render();
 private:
     ProgramUPtr m_program;
-    CONTEXT() {};
+    Context() {};
     bool Init();
-    ~CONTEXT();
-
-}
+};
