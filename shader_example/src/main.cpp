@@ -49,7 +49,7 @@ int main(int argc, char** argv) {
     auto glVersion = glGetString(GL_VERSION);
     SPDLOG_INFO("OpenGL context version: {}", glVersion);
     // shader loading 확인
-    auto context = CONTEXT::Create();
+    auto context = Context::Create();
     if(!context) {
         SPDLOG_ERROR("fail to create context");
         glfwTerminate();
